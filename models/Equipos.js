@@ -5,7 +5,15 @@ const equipoSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    copasInternacionales: {
+    informacion: {
+        type: String,
+        required: true,
+    },
+    titulos: {
+        type: String,
+        required: true,
+    },
+     copasInternacionales: {
         type: Number,
         required: true,
     },

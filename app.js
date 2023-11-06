@@ -12,10 +12,11 @@ app.use(cors())
 const {connect} = require('./db/connects')
 
 const indexRouter = require('./routers/index');
-const apiRouter = require('./routers/api')
+const apiRouter = require('./routers/api');
+const apiControllers = require('./apiControllers');
 
 app.use('/index', indexRouter);
-app.use('/v1', apiRouter)
+app.use('/v3', apiRouter)
 
 connect()
 

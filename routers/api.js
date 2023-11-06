@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {testApi} = require('../controllers/apiControllers')
+const {obtenerInfoEquipo} = require('../controllers/apiControllers')
 
 
-router.get('/info', testApi )
+app.get('/equipos/:id', obtenerInfoEquipo);
 
 
 

@@ -1,43 +1,20 @@
-const Equipo = require('../models/Equipos'); 
+const { Equipo } = require ('../models/Equipos');
+const { obtenerInfoEquipo } = apiControllers;
+const axios = require('axios'); 
 
+ 
 
-exports.crearEquipo = async (req, res) => {
+exports.obtenerInfoEquipo = async (req, res) => {
+    const equipoID = req.params.id; 
     try {
-        const nuevoEquipo = new Equipo(req.body);
-        const equipoGuardado = await nuevoEquipo.save();
-        res.json(equipoGuardado);
+        const response = await axios.get(`${'https://api-football-v1.p.rapidapi.com/v3/timezone/equipos/'}${equipoID}`);
+        res.json(response.data);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error al crear un nuevo equipo' });
+        res.status(500).json({ error: 'Error al obtener información del equipo' });
     }
 };
 
-
-exports.obtenerEquipos = async (req, res) => {
-    try {
-        const equipos = await Equipo.find({});
-        res.json(equipos);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error al obtener equipos' });
-    }
-};
-
-
-exports.obtenerEquipoPorID = async (req, res) => {
-    const idEquipo = req.params.id;
-    try {
-        const equipo = await Equipo.findById(idEquipo);
-        if (equipo) {
-            res.json(equipo);
-        } else {
-            res.status(404).json({ error: 'Equipo no encontrado' });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error al buscar equipo' });
-    }
-};
 
 
 exports.actualizarEquipoPorID = async (req, res) => {
@@ -71,4 +48,4 @@ exports.eliminarEquipoPorID = async (req, res) => {
     }
 };
 
-  module.exports = {testApi}
+  module.exports =  { obtenerInfoEquipo }
