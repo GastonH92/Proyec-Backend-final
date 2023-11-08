@@ -1,21 +1,16 @@
 const { Equipo } = require ('../models/Equipos');
-const { obtenerInfoEquipo } = apiControllers;
 const axios = require('axios'); 
-
- 
 
 exports.obtenerInfoEquipo = async (req, res) => {
     const equipoID = req.params.id; 
     try {
-        const response = await axios.get(`${'https://api-football-v1.p.rapidapi.com/v3/timezone/equipos/'}${equipoID}`);
+        const response = await axios.get(`${'https://swapi.dev/api/'}${equipoID}`);
         res.json(response.data);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error al obtener información del equipo' });
     }
 };
-
-
 
 exports.actualizarEquipoPorID = async (req, res) => {
     const idEquipo = req.params.id;
@@ -32,7 +27,6 @@ exports.actualizarEquipoPorID = async (req, res) => {
     }
 };
 
-
 exports.eliminarEquipoPorID = async (req, res) => {
     const idEquipo = req.params.id;
     try {
@@ -48,4 +42,3 @@ exports.eliminarEquipoPorID = async (req, res) => {
     }
 };
 
-  module.exports =  { obtenerInfoEquipo }

@@ -17,10 +17,9 @@ const equipoSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    
-});
 
+}, { timestamps: true }
+);
 
 const Equipo = mongoose.model('Equipo', equipoSchema);
-
 module.exports = Equipo;
