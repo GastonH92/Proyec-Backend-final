@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator')
 const Equipo = require('../models/Equipos')
 
+
 const validarInfo = (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
